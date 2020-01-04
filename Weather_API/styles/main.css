@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+    font-size: 12pt;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.current-cont {
+    color: white;
+    width: 700px;
+    height: 250px;
+    margin: 30px;
+    border: 3px solid darkslategray;
+    border-radius: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: lightseagreen;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    /* border: 1px solid black; */
+}
+/*===================================classes inside current-cont=============================*/
+.loca {
+    width: 60%;
+    height: 30%;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 40px;
+}
+.date {
+    font-size: 1.5rem;
+    width: 40%;
+    height: 30%;
+    padding: 40px;
+}
+.pic {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 34%;
+    height: auto;
+    /* align-content: top; */
+    font-size: 1.5rem;
+    /* border: 1px solid black; */
+    margin-bottom: 10%;
+}
+.main-img{
+    /* border: 1px solid black; */
+    margin-left: 30%;
+}
+.descrp{
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    /* border: 1px solid black; */
+}
+.curTemp {
+    margin-top: 20px;
+    width: 33%;
+    height: 50%;
+    font-size: 3em;
+    font-weight: 500;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+.other {
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    text-align: start;
+    width: 33%;
+    padding-left: 50px;
+}
+
+
+/*===========================================================================================*/
+.week-cont {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 200px;
+    margin: 0 30px 30px 30px;
+    /* border: 1px solid gray; */
+    border: 3px solid darkslategray;
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    background-color: lightseagreen;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+}
+.day {
+    width: 20%;
+    height: 100%;
+    border: 0.1px solid gray;
+}
+/*===================================classes inside week-cont=================================*/
+.day:first-child {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: none;
+}
+.day:last-child {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: none;
+}
+.day:nth-child(3) {
+    border-left: none;
+    border-right: none;
+}
+.day_ {
+    padding: 10px;
+    font-weight: 600;
+}
+.date_ {
+    padding: 10px;
+}
+.day1{
+    width: 60%;
+}
+
+
