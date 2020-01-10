@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 400px;
+    /* border: 1px solid black; */
+    margin: 50px;
+}
+.out {
+    line-height: 100px;
+    font-size: 2em;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+.inp {
+    width: 65%;
+    line-height: 1.5em;
+    outline: none;
+    border-radius: 5px;
+}
+.ent {
+    height: 26px;
+    margin: 0;
+    border-radius: 5px;
+    margin-left: 5px;
+    outline: none;
+}
