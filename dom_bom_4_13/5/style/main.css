@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.container {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 50px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+input {
+    height: 40px;
+    font-size: 1.5em;
+}
+a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+}
+.textS {
+    font-size: 2em;
+    font-weight: 600;
+}
+.G {
+    color: rgb(67,133,243);
+}
+.o1 {
+    color: rgb(234,67,53);
+}
+.o2 {
+    color: rgb(251,188,5);
+}
+.g {
+    color: rgb(66,133,244);
+}
+.l {
+    color: rgb(54,169,85);
+}
+.e {
+    color: rgb(235,73,60);
+}
