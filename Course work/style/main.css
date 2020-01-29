@@ -1,0 +1,42 @@
+@import url('reset.css');
+@import url('buttons.css');
+@import url('slider.css');
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-family:   'Press Start 2P';
+    font-size: 12pt;
+    color: lightgray;
+    text-shadow: 3px 3px 3px black;
+    /* background-color: rgb(213, 213, 255); */
+}
+.main-container {
+    margin: 50px 0 0 0px;
+}
+.grid {
+    /* width: fit-content;
+    height: fit-content; */
+    /* border: 1px solid black; */
+    width: 99vw;
+    /* height: 90vh; */
+
+}
+
+.text {
+    font-family:  'Press Start 2P', cursive;
+    font-size: 3rem;
+    text-align: center;
+    width: 100vw;
+    height: fit-content;
+    margin-top: 50px;
+    color: rgb(110,112,120);   
+}
+canvas {
+    /* margin: 10px; */
+    padding: 0;
+    /* border: 1px solid red; */
+}
+

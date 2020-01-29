@@ -1,0 +1,56 @@
+.container {
+    position: relative;
+    width: 500px;
+    top: 1em;
+    left: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    margin-left: 1em;
+}
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 5px;
+    position: relative;
+    background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+    border-radius: 5px;
+    outline: none;
+}   
+input.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* border: 1px solid red; */
+    background: rgb(209,209,217);
+    z-index: 100;
+    position: relative;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    cursor: pointer;  
+    border: 3px solid rgb(70,71,76);
+    box-shadow:
+    0 1px rgba(255,255,255,.2) inset,
+    0 3px 5px rgba(0,1,6,.5),
+    0 0 1px 1px rgba(0,1,6,.2);  
+}
+
+.num {
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* left: 0px; */
+    top: -20px;
+    width: 100px;
+    height: 40px; 
+    color:   rgb(70,71,76);
+    text-shadow: 3px 3px 2px rgba(0,0,0,.2);
+    /* background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+    border-radius: 0px 10px 10px 10px;
+    box-shadow:
+     0 1px rgba(255,255,255,.2) inset,
+     0 3px 5px rgba(0,1,6,.5),
+     0 0 1px 1px rgba(0,1,6,.2); */
+}
