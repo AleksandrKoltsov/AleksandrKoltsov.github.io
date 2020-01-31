@@ -1,0 +1,39 @@
+.palette-container {
+    /* filter: opacity(100%); */
+    /* display: none; */
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    left: 85vw;
+    top: 37vh;
+    width: 105px;
+    filter: grayscale(1);
+    /* z-index: 10; */
+    /* height: 65vh; */
+    /* border: 1px solid red; */
+    /* transition: 0.4s all; */
+}
+.palette-container:hover {
+    filter: grayscale(0);
+    transition: 0.3s all;
+    /* z-index: 0; */
+
+}
+.button-color {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 1px;
+    cursor: pointer;
+    border: solid 1px #fff;
+    /* transition: 0.5s all; */
+    /* z-index: 1; */
+  }
+   
+  .button-color:hover {
+    border: solid 1px #f00;
+  }
+   
+  .button-color:active {
+    border: solid 1px #ff0;
+  }

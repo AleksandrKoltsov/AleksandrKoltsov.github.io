@@ -1,13 +1,18 @@
+
 .container {
+    width: 90%;
+    height: 70px;
     position: relative;
-    width: 500px;
+    /* width: 500px;
     top: 1em;
-    left: 1em;
+    left: 1em; */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 15px;
-    margin-left: 1em;
+    margin: 50px 50px 10px 50px;
+    padding: 0 25% 0 25%;
+    /* padding: 0 15px; */
+    /* margin-left: 1em; */
 }
 .slider {
     width: 100%;

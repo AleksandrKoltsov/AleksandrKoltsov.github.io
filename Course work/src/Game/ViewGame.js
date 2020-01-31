@@ -1,11 +1,14 @@
 export class ViewGame{
-    constructor(args, start, pause, stop, randomGen, drow, time){ //получаю аргументы(переменные) из ModelGame
+    constructor(args, start, pause, stop, randomGen, drow, time,handlerCellColor){ //получаю аргументы(переменные) из ModelGame
         this.start = document.querySelector('.start').addEventListener('click', start);
         this.pause = document.querySelector('.pause').addEventListener('click', pause);
         this.stop = document.querySelector('.stop').addEventListener('click', stop);
         this.drow = document.querySelector('.drow').addEventListener('click', drow);  
         this.generator = document.querySelector('.random').addEventListener('click', randomGen);
         this.slider = document.querySelector('.slider').addEventListener('change', time);
+        this.palette = document.querySelector('.palette-container');
+        // this.handlerColor = document.querySelector('.color').addEventListener('change', handlerCellColor);
+        document.querySelector('.slider').addEventListener('input', this.moveSlider);
 
         this.canvas = document.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
@@ -20,10 +23,11 @@ export class ViewGame{
         this.canvas.height = this.height;
 
         this.isStart = false; 
-        document.querySelector('.slider').addEventListener('input', this.moveSlider);
 
-        let interpolate = d3.interpolateRgbBasis(["red", "red", "red"])(0.5)
-        console.log(interpolate);
+        // let interpolate = d3.interpolateRgbBasis(["red", "red", "red"])(0.5)
+        // console.log(interpolate);
+        this.selectColor();
+        
     }
     moveSlider(ev){
         let output = document.querySelector('.num');
@@ -45,6 +49,7 @@ export class ViewGame{
         // console.log(x,y);
         this.context.beginPath();
         this.context.fillStyle = color;
+        this.context.linecap = "square";
         this.context.rect(x, y, width, height);
         this.context.strokeStyle="black";
         this.context.lineWidth = 2;
@@ -56,20 +61,90 @@ export class ViewGame{
         this.context.fill();
     }
 
-    handDrow(callbackBoardClick){ // рукописный ввод
+    handDrow(callbackBoardClick){ // listener на рукописный ввод
         this.canvas.addEventListener('click', callbackBoardClick);
+        // this.canvas.addEventListener( 'mousedown', startDrawing );
+        // this.canvas.addEventListener( 'mousemove', drawLine );
+        // this.canvas.addEventListener( 'mouseup', stopDrawing );
+        // this.canvas.addEventListener( 'mouseout', stopDrawing );
+
+        this.generatePalette();
     }
     
-    drowSquare(ev){
+    drowSquare(ev){ // ручная отрисовка
         const rect = this.canvas.getBoundingClientRect();
+
         let x = ev.clientX - rect.left;
         let y = ev.clientY - rect.top;
         x = parseInt(x / this.cellSize) * this.cellSize;
         y = parseInt(y / this.cellSize) * this.cellSize; 
+
+
+        // let isMouseDown = false;
+        // const stopDrawing = () => { isMouseDown = false; }
+        
+        // const startDrawing = ev => {
+        //     isMouseDown = true;   
+        //
+        // }
+
+        // const drawLine = ev => {
+        //     if ( isMouseDown ) {
+        //         const newX = x;
+        //         const newY = y;
+        //         this.context.beginPath();
+        //         this.context.moveTo( x, y );
+        //         this.context.lineTo( newX, newY );
+        //         this.context.stroke();
+        //         //[x, y] = [newX, newY];
+        //         x = newX;
+        //         y = newY;
+        //     }
+        // }
+
         this.drawField(x, y, this.cellSize, this.cellSize, this.cellColor);
         x /= this.cellSize;
         y /= this.cellSize;
         return {y, x};
+
     }
+    
+    generatePalette(palette){// генерируем палитру 
+        for (let r = 0, max = 4; r <= max; r++) {
+            for (let g = 0; g <= max; g++) {
+                for (let b = 0; b <= max; b++) {
+
+                    let paletteBlock = document.createElement('div');
+                    paletteBlock.classList.add('button-color');
+                    paletteBlock.addEventListener('click', (e)=> {
+                        this.context.strokeStyle = e.target.style.backgroundColor;
+                    });
         
+                    paletteBlock.style.backgroundColor = (`
+                    rgb(${Math.round(r * 255 / max)},
+                        ${Math.round(g * 255 / max)},
+                        ${Math.round(b * 255 / max)})
+                        `);
+        
+                    this.palette.appendChild(paletteBlock);
+                }
+            }
+        }
+    }
+
+    selectColor(){
+        this.palette.addEventListener('click', (ev)=>{
+            this.cellColor = ev.target.style.backgroundColor;
+            // console.log(this.cellColor);
+        });
+        // console.log(ev.target);
+    }
+    removePalette(){ //удаляем палитру
+        while(this.palette.hasChildNodes()){
+            this.palette.removeChild(this.palette.firstChild);
+        }
+    }
+    
+    
 }
+

@@ -1,12 +1,21 @@
 export class ModelGame{
     constructor(){ //стартовые параметры
-        this.columns = 135; //колонки
-        this.rows = 65; //столбцы
+        this.columns = 100; //колонки
+        this.rows = 50; //столбцы
         this.bgColor = 'white'; //цвет фона
         this.cellSize = 10; //размер ячейки
         this.cellColor = 'lightgray'; //цвет ячейки
         this.genTime = 1000; //время жизни поколения
-        this.genNum = 0;
+        this.cell = {
+            x          : 0,
+            y          : 0,
+            state      : false,
+            nextState  : false,
+            color      : 'rgb(255,255,255)',
+            nextColor  : 'rgb(255,255,255)',
+            deathColor : 'rgb(255,255,255)'
+        }
+        // this.genNum = 0;
         
         // console.log(time);
 
@@ -146,9 +155,9 @@ export class ModelGame{
                 neighbors += this.getField(x + 1, y);
                 neighbors += this.getField(x + 1, y + 1);
 
-                if(this.getField(x, y)){ //проверка на жизнь
-                    if (neighbors == 2 || neighbors == 3){
-                        state = true;
+                if(this.getField(x, y)){ //проверка на границы
+                    if (neighbors == 2 || neighbors == 3){ //проверка на жизнь
+                        state = true; 
                     }
                 }
 
@@ -162,7 +171,7 @@ export class ModelGame{
             map.push(row);
         }
         this.map = map;
-        this.genNum++;
+        // this.genNum++;
     }
 
     addDot(coord){
@@ -174,4 +183,8 @@ export class ModelGame{
     getTime(time){
         this.genTime = time;
     }
+
+    // getColor(color){
+    //     this.cellColor = color;
+    // }
 }

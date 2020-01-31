@@ -13,7 +13,8 @@ export class ControllerGame{
             this.stop.bind(this),
             this.randomGen.bind(this),
             this.handDrow.bind(this),
-            this.getViewTime.bind(this)
+            this.getViewTime.bind(this),
+            // this.getHandlerColorCell.bind(this)
         );
 
         this.game = null;
@@ -24,8 +25,12 @@ export class ControllerGame{
 
         this.start();
     }
+    // getHandlerColorCell(ev){
+    //     console.log(ev);
+    //     this.model.getColor(ev.target.value);
+    // }
 
-    getViewTime(ev){
+    getViewTime(ev){//передаю в модель значение ползунка
         this.model.getTime(ev.target.value);
 
     }
@@ -67,6 +72,7 @@ export class ControllerGame{
         this.model.clear();
         this.view.stopGame();
         clearInterval(this.game);
+        this.view.removePalette();
         this.isRandom = true;
         this.isStart = true;
         this.isPause = true;
@@ -86,7 +92,7 @@ export class ControllerGame{
       
     }
 
-    handDrow(){ //в ручную задать стартовую позицию
+    handDrow(){ //вешает слушателей на обработку мыши в канвас
         this.view.handDrow(this.handlClickBoard.bind(this));
     }
 

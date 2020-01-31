@@ -1,18 +1,23 @@
-.buttons-container {
-    width: 100vw;
-    display: flex;
-    flex-wrap: wrap;
-    /* padding: 30px; */
-    justify-content: center;
-}
 
-.start, .stop, .drow, .random, .pause, .color{
+.buttons-container {
+  width: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 30px; */
+  justify-content: center;
+  margin: 0 30px 0 0;
+  /* border: 1px solid black; */
+}
+.start, .stop, .drow, .random, .pause, .forColor {
     width: 70px;
     height: 70px;
     /* padding: 10px; */
     margin-bottom: 10px;
     /* font-size: 3rem; */
     /* font-family: 'Frijole', cursive; */
+}
+.forColor {
+  border: 2px solid   rgb(209,209,217);
 }
 .button {
     position: relative;
