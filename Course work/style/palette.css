@@ -1,7 +1,7 @@
 .palette-container {
     /* filter: opacity(100%); */
     /* display: none; */
-    position: absolute;
+    /* position: absolute; */
     display: inline-block;
     cursor: pointer;
     left: 85vw;

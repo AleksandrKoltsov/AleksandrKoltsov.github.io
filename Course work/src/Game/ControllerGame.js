@@ -2,7 +2,7 @@ import { ModelGame } from './ModelGame.js';
 import { ViewGame } from './ViewGame.js';
 
 export class ControllerGame{
-    constructor(){
+    constructor({publish}){
         this.model = new ModelGame(
             // this.view.getTime(this)  
         );
@@ -16,6 +16,7 @@ export class ControllerGame{
             this.getViewTime.bind(this),
             // this.getHandlerColorCell.bind(this)
         );
+        // this.publish = publish;
 
         this.game = null;
 
@@ -97,7 +98,9 @@ export class ControllerGame{
     }
 
     handlClickBoard(ev){
-       this.model.addDot(this.view.drowSquare(ev));
+       let obj = this.view.drowSquare(ev);
+       this.model.addDot(obj);
+    //    this.publish('get-coord', coord);
      
     }
 

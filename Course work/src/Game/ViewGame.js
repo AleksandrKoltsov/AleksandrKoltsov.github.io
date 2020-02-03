@@ -7,7 +7,7 @@ export class ViewGame{
         this.generator = document.querySelector('.random').addEventListener('click', randomGen);
         this.slider = document.querySelector('.slider').addEventListener('change', time);
         this.palette = document.querySelector('.palette-container');
-        // this.handlerColor = document.querySelector('.color').addEventListener('change', handlerCellColor);
+
         document.querySelector('.slider').addEventListener('input', this.moveSlider);
 
         this.canvas = document.querySelector('canvas');
@@ -24,8 +24,6 @@ export class ViewGame{
 
         this.isStart = false; 
 
-        // let interpolate = d3.interpolateRgbBasis(["red", "red", "red"])(0.5)
-        // console.log(interpolate);
         this.selectColor();
         
     }
@@ -55,7 +53,7 @@ export class ViewGame{
         this.context.lineWidth = 2;
         this.context.stroke();
         this.context.shadowColor = "darkgray";
-        this.context.shadowBlur = 3;
+        this.context.shadowBlur = 2;
         this.context.shadowOffsetX = 2;
         this.context.shadowOffsetY = 2;
         this.context.fill();
@@ -73,13 +71,20 @@ export class ViewGame{
     
     drowSquare(ev){ // ручная отрисовка
         const rect = this.canvas.getBoundingClientRect();
-
+        const cell = {
+            x : 0,
+            y : 0,
+            color : 'white'
+        };
         let x = ev.clientX - rect.left;
         let y = ev.clientY - rect.top;
         x = parseInt(x / this.cellSize) * this.cellSize;
         y = parseInt(y / this.cellSize) * this.cellSize; 
 
-
+        this.palette.addEventListener('click', (ev)=>{
+                this.cellColor = ev.target.style.backgroundColor;
+            // console.log(this.cellColor);
+         });
         // let isMouseDown = false;
         // const stopDrawing = () => { isMouseDown = false; }
         
@@ -101,11 +106,16 @@ export class ViewGame{
         //         y = newY;
         //     }
         // }
-
+    
+        
         this.drawField(x, y, this.cellSize, this.cellSize, this.cellColor);
         x /= this.cellSize;
         y /= this.cellSize;
-        return {y, x};
+        cell.x = x;
+        cell.y = y;
+        cell.color = this.cellColor;
+        // console.log(cell);
+        return cell;
 
     }
     
@@ -136,7 +146,7 @@ export class ViewGame{
         this.palette.addEventListener('click', (ev)=>{
             this.cellColor = ev.target.style.backgroundColor;
             // console.log(this.cellColor);
-        });
+    });
         // console.log(ev.target);
     }
     removePalette(){ //удаляем палитру
