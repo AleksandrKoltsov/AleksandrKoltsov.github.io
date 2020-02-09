@@ -2,10 +2,8 @@ import { ModelGame } from './ModelGame.js';
 import { ViewGame } from './ViewGame.js';
 
 export class ControllerGame{
-    constructor({publish}){
-        this.model = new ModelGame(
-            // this.view.getTime(this)  
-        );
+    constructor(){
+        this.model = new ModelGame();
         this.view = new ViewGame(
             this.model.getVar(),
             this.startGame.bind(this),
@@ -13,27 +11,19 @@ export class ControllerGame{
             this.stop.bind(this),
             this.randomGen.bind(this),
             this.handDrow.bind(this),
-            this.getViewTime.bind(this),
-            // this.getHandlerColorCell.bind(this)
+            this.getViewTime.bind(this)
         );
-        // this.publish = publish;
 
         this.game = null;
-
         this.isRandom = true;
         this.isStart = true;
         this.isPause = true;
-
+        this.isPalette = true;
         this.start();
     }
-    // getHandlerColorCell(ev){
-    //     console.log(ev);
-    //     this.model.getColor(ev.target.value);
-    // }
 
     getViewTime(ev){//передаю в модель значение ползунка
         this.model.getTime(ev.target.value);
-
     }
 
     start(){
@@ -58,7 +48,6 @@ export class ControllerGame{
         }else return;
     }
     pauseGame(){
-
         if(this.isPause == true){ //пауза в игре
 
             this.isPause = false;
@@ -69,7 +58,6 @@ export class ControllerGame{
     }
 
     stop(){ // останавливает и обнуляет игру
-
         this.model.clear();
         this.view.stopGame();
         clearInterval(this.game);
@@ -77,7 +65,8 @@ export class ControllerGame{
         this.isRandom = true;
         this.isStart = true;
         this.isPause = true;
-
+        this.isPalette = true;
+        this.isDrowStart = true;
     }
 
     randomGen(){ // генерирует случайное полк
@@ -94,14 +83,16 @@ export class ControllerGame{
     }
 
     handDrow(){ //вешает слушателей на обработку мыши в канвас
-        this.view.handDrow(this.handlClickBoard.bind(this));
+        this.view.handDrow(this.handlClickBoard.bind(this)); //1
+        if(this.isPalette){
+            this.isPalette = false;
+            this.view.generatePalette();
+        }
     }
 
-    handlClickBoard(ev){
-       let obj = this.view.drowSquare(ev);
-       this.model.addDot(obj);
-    //    this.publish('get-coord', coord);
-     
-    }
+    handlClickBoard(ev){ //рисую клетку и передаю координаты в модель
+        let obj = this.view.drowSquare(ev);
+        this.model.addDot(obj);
 
+    }
 }

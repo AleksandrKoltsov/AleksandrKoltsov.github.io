@@ -1,22 +1,22 @@
 export class ModelCell {
 	constructor() {
-        // this.args ={};
-        // console.log(this.args);
-		this.alive = false;
-		this.aliveNext = false;
-		this.color = 'white';
-		this.colorNext = 'white';
-		this.x = 0;
-		this.y = 0;
-		this.neighborhood = [];
-		// this.setNeighborhood = this.setNeighborhood.bind(this);
-		this.deadColor = 'white';
+        // // this.args ={};
+        // // console.log(this.args);
+		// this.alive = false;
+		// this.aliveNext = false;
+		// this.color = 'white';
+		// this.colorNext = 'white';
+		// this.x = 0;
+		// this.y = 0;
+		// this.neighborhood = [];
+		// // this.setNeighborhood = this.setNeighborhood.bind(this);
+		// this.deadColor = 'white';
 	}
-    getCoord(data){ // получаю координаты с поля при рисовании
-        this.x = data.x;
-        this.y = data.y;
-        // console.log(this.x, this.y);
-    }
+    // getCoord(data){ // получаю координаты с поля при рисовании
+    //     this.x = data.x;
+    //     this.y = data.y;
+    //     // console.log(this.x, this.y);
+    // }
 	// born() {
 	// 	this.alive = true;
 	// }

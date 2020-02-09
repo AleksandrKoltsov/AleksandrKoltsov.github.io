@@ -6,34 +6,28 @@ export class ModelGame{
         this.cellSize = 10; //размер ячейки
         this.cellColor = 'lightgray'; //цвет ячейки
         this.genTime = 1000; //время жизни поколения
-        
         this.map = [];
-        for(let y = 0; y < this.rows; y++){
+
+        for(let y = 0; y < this.rows; y++){ //создаю поле и заселяю мертвыми клетками
             const row = [];
-
             for(let x = 0; x < this.columns; x++){
-
                 row.push(this.createCell(y,x));
             }
-            
             this.map.push(row);
         }
-
         this.data = [];
     }
-    createCell(y,x){
+    createCell(y,x){ //создаю новую клетку 
         const cell = {
             x          : x,
             y          : y,
             state      : false,
-            // nextState  : false,
             color      : 'rgb(255,255,255)',
-            // nextColor  : 'rgb(255,255,255)',
             deathColor : this.bgColor
         }
         return cell;
     }
-    getVar(){
+    getVar(){ //
         return { // посылаю переменные во вьюху
             width: this.columns * this.cellSize,
             height: this.rows* this.cellSize,
@@ -43,11 +37,8 @@ export class ModelGame{
             time: this.genTime
         }
     }
-
+    // лишний метод
     // getField(x, y){ // получаю  координаты 
-    //     if(x < 0 || x >= this.columns || y < 0 || y >= this.rows) {
-    //         return false;
-    //     }
  
     //     if(this.map[y][x].state == true){
     //         return 1;
@@ -56,9 +47,6 @@ export class ModelGame{
     // }
 
     setField(obj){ // задаю координаты и значение клетки
-        // if(x < 0 || x >= this.columns || y < 0 || y >= this.rows) {
-        //     return value;
-        // }
          this.map[obj.y][obj.x].state = true;
          this.map[obj.y][obj.x].color = obj.color;
     }
@@ -66,14 +54,12 @@ export class ModelGame{
     reviveRandomFields(){ //случайная генерация клеток
         const freeFields = [];
         let n = parseInt(this.rows * this.columns / 2);
-      
     
         for(let y = 0; y < this.rows; y++){   //создаю коллекцию объектов с координатами всего поля
             for(let x = 0; x < this.columns; x++){
                 if(this.map[y][x].state == false){
                     freeFields.push({x, y});
                 }
-
             }
         }
     
@@ -83,11 +69,8 @@ export class ModelGame{
                 this.map[field.y][field.x].state = true;
                 this.map[field.y][field.x].color = this.cellColor;
                 n--;
-            }
-            // console.log(this.map);
-            
+            }    
     }
-    
 
     forFreeEach(){ //получение координат для живой клетки и передача их для рендера
         const liveFields = [];
@@ -117,7 +100,6 @@ export class ModelGame{
             }               
         }
     }
-  
 
     changeGeneration(){ //смена поколения
         const map = [];
@@ -127,26 +109,26 @@ export class ModelGame{
 
             for(let x = 0; x < this.columns; x++){
                 let north, east, south, west;
-
                 let neighbors = [];
                 const cell = this.createCell(y,x);
+
                 north = y - 1;
                 south = y + 1;
                 east = x + 1;
                 west = x - 1;
-        
-                if (y == 0) {
+                //вычисляю краевые условия поля
+                if(y == 0){
                     north = this.rows - 1;
-                } else if (y == this.rows - 1) {
+                }else if(y == this.rows - 1){
                     south = 0;
                 }
-        
-                if (x == 0) {
+
+                if(x == 0){
                     west = this.columns - 1;
-                } else if (x == this.columns - 1) {
+                }else if(x == this.columns - 1){
                     east = 0;
                 }
-                
+                //получаю массив соседей
                 neighbors.push(this.map[north][x]);
                 neighbors.push(this.map[north][east]);
                 neighbors.push(this.map[y][east]);
@@ -156,12 +138,13 @@ export class ModelGame{
                 neighbors.push(this.map[y][west]);
                 neighbors.push(this.map[north][west]);
                 
-                const aliveNeighbors = this.parseNeighbors(neighbors);
+                const aliveNeighbors = this.parseNeighbors(neighbors); //передаю массив соседей на обработку
 
-                if(this.map[y][x].state == true){
+                if(this.map[y][x].state == true){ //правила жизни клетки и интерполяции цвета
                     if(aliveNeighbors.length == 2 || aliveNeighbors.length == 3){
                         cell.state = true;
-                        cell.color = this.map[y][x].color;
+                        //получаю цвет от двух соседей и текущий цвет клетки, затемм интерполирую в новый цвет
+                        cell.color = d3.interpolate(this.getColorCell([aliveNeighbors[0].color, aliveNeighbors[1].color]), this.map[y][x].color)(0.5);
                     }else {
                         cell.state = false;
                         cell.color = this.bgColor;
@@ -169,35 +152,35 @@ export class ModelGame{
                 }else if(this.map[y][x].state == false){
                     if(aliveNeighbors.length == 3){
                         cell.state = true;
-                        cell.color = this.getColorCell(aliveNeighbors[0].color, aliveNeighbors[1].color, aliveNeighbors[2].color);
+                        cell.color = this.getColorCell([aliveNeighbors[0].color, aliveNeighbors[1].color, aliveNeighbors[2].color]);
                     }else {
                         cell.state = false;
                         cell.color = this.bgColor;
                     }
                 }
-        
                 row.push(cell); 
             }
             map.push(row);
         }
         this.map = map;
-        // this.genNum++;
     }
 
-    getColorCell(cellColor1, cellColor2, cellColor3){ //интерполяция цвета для новой клетки
-         let interpolate = d3.interpolateRgbBasis([cellColor1, cellColor2, cellColor3])(0.5);
-         return interpolate;
+    getColorCell(arr){ //интерполяция цвета для новой клетки
+        return arr.reduce((acc, curr, i) => {
+			 return d3.interpolate(acc, curr)(1 / (i + 1))});
+        //  let interpolate = d3.interpolateRgbBasis(arr)(0.5);
+        //  return interpolate;
     }
 
 	parseNeighbors(arr) { //фильтруем неживых соседей
 		return arr.filter(cell => cell.state);
     }
     
-    addDot(obj){
+    addDot(obj){//получаю координаты точки и заселяю поле
         this.setField(obj);
     }
 
-    getTime(time){
+    getTime(time){ //получаю значение ползунка времени
         this.genTime = time;
     }
 }

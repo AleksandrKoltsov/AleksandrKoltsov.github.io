@@ -1,5 +1,5 @@
 export class ViewGame{
-    constructor(args, start, pause, stop, randomGen, drow, time,handlerCellColor){ //получаю аргументы(переменные) из ModelGame
+    constructor(args, start, pause, stop, randomGen, drow, time){ //получаю аргументы(переменные) из ModelGame
         this.start = document.querySelector('.start').addEventListener('click', start);
         this.pause = document.querySelector('.pause').addEventListener('click', pause);
         this.stop = document.querySelector('.stop').addEventListener('click', stop);
@@ -25,11 +25,11 @@ export class ViewGame{
         this.isStart = false; 
 
         this.selectColor();
-        
     }
-    moveSlider(ev){
+
+    moveSlider(ev){ //значение ползунка
         let output = document.querySelector('.num');
-        output.value = (ev.target.value / 1000).toFixed(2) + 's';
+        output.value = `Time:${(ev.target.value / 1000).toFixed(2) + 's'}`;
     }
 
     stopGame(){
@@ -44,7 +44,6 @@ export class ViewGame{
         this.context.fill();
     }
     drawField(x = 0, y = 0, width = this.cellSize, height = this.cellSize, color = this.cellColor){ // рисую заданную клетку
-        // console.log(x,y);
         this.context.beginPath();
         this.context.fillStyle = color;
         this.context.linecap = "square";
@@ -60,15 +59,9 @@ export class ViewGame{
     }
 
     handDrow(callbackBoardClick){ // listener на рукописный ввод
-        this.canvas.addEventListener('click', callbackBoardClick);
-        // this.canvas.addEventListener( 'mousedown', startDrawing );
-        // this.canvas.addEventListener( 'mousemove', drawLine );
-        // this.canvas.addEventListener( 'mouseup', stopDrawing );
-        // this.canvas.addEventListener( 'mouseout', stopDrawing );
-
-        this.generatePalette();
+        this.canvas.addEventListener('mousemove', callbackBoardClick);
     }
-    
+
     drowSquare(ev){ // ручная отрисовка
         const rect = this.canvas.getBoundingClientRect();
         const cell = {
@@ -80,46 +73,18 @@ export class ViewGame{
         let y = ev.clientY - rect.top;
         x = parseInt(x / this.cellSize) * this.cellSize;
         y = parseInt(y / this.cellSize) * this.cellSize; 
-
-        this.palette.addEventListener('click', (ev)=>{
-                this.cellColor = ev.target.style.backgroundColor;
-            // console.log(this.cellColor);
-         });
-        // let isMouseDown = false;
-        // const stopDrawing = () => { isMouseDown = false; }
-        
-        // const startDrawing = ev => {
-        //     isMouseDown = true;   
-        //
-        // }
-
-        // const drawLine = ev => {
-        //     if ( isMouseDown ) {
-        //         const newX = x;
-        //         const newY = y;
-        //         this.context.beginPath();
-        //         this.context.moveTo( x, y );
-        //         this.context.lineTo( newX, newY );
-        //         this.context.stroke();
-        //         //[x, y] = [newX, newY];
-        //         x = newX;
-        //         y = newY;
-        //     }
-        // }
-    
-        
-        this.drawField(x, y, this.cellSize, this.cellSize, this.cellColor);
-        x /= this.cellSize;
-        y /= this.cellSize;
-        cell.x = x;
-        cell.y = y;
-        cell.color = this.cellColor;
-        // console.log(cell);
-        return cell;
-
+        if(ev.buttons > 0){
+            this.drawField(x, y, this.cellSize, this.cellSize, this.cellColor);
+            x /= this.cellSize;
+            y /= this.cellSize;
+            cell.x = x;
+            cell.y = y;
+            cell.color = this.cellColor;
+        }
+            return cell;
     }
     
-    generatePalette(palette){// генерируем палитру 
+    generatePalette(){// генерируем палитру 
         for (let r = 0, max = 4; r <= max; r++) {
             for (let g = 0; g <= max; g++) {
                 for (let b = 0; b <= max; b++) {
@@ -145,16 +110,14 @@ export class ViewGame{
     selectColor(){
         this.palette.addEventListener('click', (ev)=>{
             this.cellColor = ev.target.style.backgroundColor;
-            // console.log(this.cellColor);
     });
-        // console.log(ev.target);
+  
     }
+
     removePalette(){ //удаляем палитру
         while(this.palette.hasChildNodes()){
             this.palette.removeChild(this.palette.firstChild);
         }
     }
-    
-    
 }
 
