@@ -1,5 +1,5 @@
-import { ModelGame } from 'ModelGame.js';
-import { ViewGame } from 'ViewGame.js';
+import { ModelGame } from './ModelGame.js';
+import { ViewGame } from './ViewGame.js';
 
 export class ControllerGame{
     constructor(){
