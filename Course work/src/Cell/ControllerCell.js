@@ -1,5 +1,5 @@
-import { ModelCell } from "./ModelCell.js";
-import { ViewCell } from "./ViewCell.js";
+import { ModelCell } from "ModelCell.js";
+import { ViewCell } from "ViewCell.js";
 
 export class ControllerCell {
     constructor({subscribe}){
