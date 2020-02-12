@@ -12,6 +12,8 @@ export class ControllerGame{
             this.randomGen.bind(this),
             this.handDrow.bind(this),
             this.getViewTime.bind(this)
+            // this.handlBtnCloseModal.bind(this),
+            // this.renderModal.bind(this)
         );
 
         this.game = null;
@@ -21,6 +23,12 @@ export class ControllerGame{
         this.isPalette = true;
         this.start();
     }
+    // renderModal(){
+    //     this.view.renderPostModal();
+    // }
+    // handlBtnCloseModal(){
+    //     this.view.closeModal();
+    // }
 
     getViewTime(ev){//передаю в модель значение ползунка
         this.model.getTime(ev.target.value);
@@ -69,7 +77,7 @@ export class ControllerGame{
         this.isDrowStart = true;
     }
 
-    randomGen(){ // генерирует случайное полк
+    randomGen(){ // генерирует случайное поле
         if(this.isRandom == true){
 
             this.isRandom = false;
@@ -95,4 +103,5 @@ export class ControllerGame{
         this.model.addDot(obj);
 
     }
+
 }

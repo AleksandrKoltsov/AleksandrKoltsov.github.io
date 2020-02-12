@@ -1,5 +1,7 @@
+// import { TemplaterModal } from "./TemplaterModal.js";
+
 export class ViewGame{
-    constructor(args, start, pause, stop, randomGen, drow, time){ //получаю аргументы(переменные) из ModelGame
+    constructor(args, start, pause, stop, randomGen, drow, time/*, listenerFunc, getModal*/){ //получаю аргументы(переменные) из ModelGame
         this.start = document.querySelector('.start').addEventListener('click', start);
         this.pause = document.querySelector('.pause').addEventListener('click', pause);
         this.stop = document.querySelector('.stop').addEventListener('click', stop);
@@ -7,12 +9,12 @@ export class ViewGame{
         this.generator = document.querySelector('.random').addEventListener('click', randomGen);
         this.slider = document.querySelector('.slider').addEventListener('change', time);
         this.palette = document.querySelector('.palette-container');
-
+   
         document.querySelector('.slider').addEventListener('input', this.moveSlider);
-
+        
         this.canvas = document.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
-
+        
         this.width = args.width;
         this.height = args.height;
         this.bgColor = args.bgColor;
@@ -21,11 +23,27 @@ export class ViewGame{
         
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-
         this.isStart = false; 
-
         this.selectColor();
+        //модальное окно
+
+        // this.template = new TemplaterModal(); 
+        // this.domModal = document.querySelector('.modal-container');
+        // this.info = document.querySelector('.info').addEventListener('click', getModal);
+        // this.classname = 'modActive';
+
+        // document.body.insertAdjacentHTML('beforeend', this.template.getHtml());
+        // document.querySelector('.btn-close').addEventListener('click', listenerFunc);
     }
+
+    // renderPostModal(){ //рисую модалку
+    //     this.domModal.classList.toggle(this.classname, true);
+    // }
+
+    // closeModal(){//закрываю модалку
+    //     this.domModal.classList.toggle(this.classname, false);
+    // }
+
 
     moveSlider(ev){ //значение ползунка
         let output = document.querySelector('.num');
@@ -37,7 +55,7 @@ export class ViewGame{
         this.clearCanvas();
     }
 
-    clearCanvas(){ // рисию задний фон
+    clearCanvas(){ // рисую задний фон
         this.context.beginPath();
         this.context.fillStyle = this.bgColor;
         this.context.rect(0, 0, this.canvas.width, this.canvas.height);

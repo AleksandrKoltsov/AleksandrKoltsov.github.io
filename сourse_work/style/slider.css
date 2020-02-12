@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     margin: 50px 50px 10px 50px;
-    padding: 0 25vw 0 0;
+    padding: 0 35vw 0 0;
 }
 .slider {
     width: 500px;
@@ -39,13 +39,13 @@ input.slider::-webkit-slider-thumb {
 
 .num {
     font-size: 1.5em;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     position: absolute;
-    left: 33vw;
+    /* left: 33vw; */
     top: -20px;
-    /* margin: 0 0 0 5vw; */
+    margin: 0 0 0 5vw;
     width: 100px;
     height: 40px; 
     color:   rgb(70,71,76);

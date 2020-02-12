@@ -4,4 +4,9 @@ import { Publisher } from "./share/Publisher.js";
 
 const publisher = new Publisher();
 const game = new ControllerGame(publisher.methods);
-const cell = new ControllerCell(publisher.methods);
+
+function extracted() {
+    const cell = new ControllerCell(publisher.methods);
+}
+
+extracted();

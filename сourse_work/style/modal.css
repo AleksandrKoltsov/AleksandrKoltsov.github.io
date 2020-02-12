@@ -1,0 +1,60 @@
+.modal-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: 1s all;
+}
+.modActive {
+    display: inline-block;
+}
+.head-container {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90vw;
+    margin-bottom: 2rem;
+}
+.modal {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95vw;
+    height: 90vh;
+    /* min-height: 300px; */
+    padding: 0 2rem 2rem 2rem;
+    margin: 2rem;
+    /* z-index: 102; */
+    background-color: rgb(97, 97, 97);
+    border: 5px solid  rgb(110,112,120);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    text-align: justify;
+    overflow-y: scroll;
+    list-style: circle;
+
+}
+.head-container {
+    position: fixed;
+    padding: 20px;
+    background-color: rgb(97, 97, 97);
+    
+}
+
+.main-moda-container {
+    padding-top: 7rem;
+}
+.header1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+p {
+    margin-bottom: 1rem;
+}
+.help {
+    float: left;
+    margin: 1rem;
+    width: 50%;
+    height: 50%;
+}
+
+
