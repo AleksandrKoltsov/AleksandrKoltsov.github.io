@@ -1,60 +1,77 @@
-.modal-container {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: 101;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.3);
-    transition: 1s all;
-}
-.modActive {
-    display: inline-block;
-}
-.head-container {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 90vw;
-    margin-bottom: 2rem;
-}
-.modal {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 95vw;
-    height: 90vh;
-    /* min-height: 300px; */
-    padding: 0 2rem 2rem 2rem;
-    margin: 2rem;
-    /* z-index: 102; */
-    background-color: rgb(97, 97, 97);
-    border: 5px solid  rgb(110,112,120);
-    border-radius: 10px;
-    font-size: 1.5rem;
-    text-align: justify;
-    overflow-y: scroll;
-    list-style: circle;
+/* Step 1 */
 
-}
-.head-container {
-    position: fixed;
-    padding: 20px;
-    background-color: rgb(97, 97, 97);
-    
-}
-
-.main-moda-container {
-    padding-top: 7rem;
-}
-.header1 {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem;
-}
 p {
-    margin-bottom: 1rem;
+    margin-top: 0px;
+}
+
+
+.modal-container {
+    position: fixed;
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    max-width: 1000px;
+    left: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 101;
+    overflow-y: scroll;
+    background-color: rgb(95, 95, 95);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    
+    -webkit-transform: translate(-50%, -500%);
+    -ms-transform: translate(-50%, -500%);
+    transform: translate(-50%, -500%);
+    
+    
+    /* Step 3 */
+    -webkit-transition: -webkit-transform 200ms ease-out;
+    transition: transform 200ms ease-out;
+}
+
+.modal:before {
+    content: "";
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,.8);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+}
+
+/* Step 2 */
+
+.modal:target:before {
+    display: block;
+}
+
+.modal:target .modal-container {
+    top: 10%;
+    
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
 }
 .help {
+    margin: 2rem;
+    width: 70%;
     float: left;
-    margin: 1rem;
-    width: 50%;
-    height: 50%;
+}
+.head-container {
+    width: 95%;
+    margin: 1rem 1rem 2rem 2rem;
+    /* position: fixed; */
+}
+.main-modal-container {
+    margin-top: 2rem;
+    text-align: justify;
 }
 
-
+.header {
+    font-size: 3rem;
+}

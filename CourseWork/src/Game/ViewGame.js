@@ -1,7 +1,5 @@
-// import { TemplaterModal } from "./TemplaterModal.js";
-
 export class ViewGame{
-    constructor(args, start, pause, stop, randomGen, drow, time/*, listenerFunc, getModal*/){ //получаю аргументы(переменные) из ModelGame
+    constructor(args, start, pause, stop, randomGen, drow, time){ //получаю аргументы(переменные) из ModelGame
         this.start = document.querySelector('.start').addEventListener('click', start);
         this.pause = document.querySelector('.pause').addEventListener('click', pause);
         this.stop = document.querySelector('.stop').addEventListener('click', stop);
@@ -14,7 +12,9 @@ export class ViewGame{
         
         this.canvas = document.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
-        
+
+        this.track = [...document.querySelectorAll('audio')];
+
         this.width = args.width;
         this.height = args.height;
         this.bgColor = args.bgColor;
@@ -25,31 +25,19 @@ export class ViewGame{
         this.canvas.height = this.height;
         this.isStart = false; 
         this.selectColor();
-        //модальное окно
-
-        // this.template = new TemplaterModal(); 
-        // this.domModal = document.querySelector('.modal-container');
-        // this.info = document.querySelector('.info').addEventListener('click', getModal);
-        // this.classname = 'modActive';
-
-        // document.body.insertAdjacentHTML('beforeend', this.template.getHtml());
-        // document.querySelector('.btn-close').addEventListener('click', listenerFunc);
+        this.playSound();
     }
 
-    // renderPostModal(){ //рисую модалку
-    //     this.domModal.classList.toggle(this.classname, true);
-    // }
-
-    // closeModal(){//закрываю модалку
-    //     this.domModal.classList.toggle(this.classname, false);
-    // }
-
+    playSound(){ //воспроизведение музыки
+        const track = this.track[Math.floor(Math.random() * this.track.length)];
+        track.classList.add('sound-active');
+    }
 
     moveSlider(ev){ //значение ползунка
         let output = document.querySelector('.num');
         output.value = `Time:${(ev.target.value / 1000).toFixed(2) + 's'}`;
     }
-
+    
     stopGame(){
         this.isStart = false;
         this.clearCanvas();

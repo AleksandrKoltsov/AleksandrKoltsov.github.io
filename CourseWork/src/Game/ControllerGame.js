@@ -11,9 +11,7 @@ export class ControllerGame{
             this.stop.bind(this),
             this.randomGen.bind(this),
             this.handDrow.bind(this),
-            this.getViewTime.bind(this)
-            // this.handlBtnCloseModal.bind(this),
-            // this.renderModal.bind(this)
+            this.getViewTime.bind(this),
         );
 
         this.game = null;
@@ -21,14 +19,8 @@ export class ControllerGame{
         this.isStart = true;
         this.isPause = true;
         this.isPalette = true;
-        this.start();
+        this.start();       
     }
-    // renderModal(){
-    //     this.view.renderPostModal();
-    // }
-    // handlBtnCloseModal(){
-    //     this.view.closeModal();
-    // }
 
     getViewTime(ev){//передаю в модель значение ползунка
         this.model.getTime(ev.target.value);
@@ -40,12 +32,10 @@ export class ControllerGame{
 
     startGame(){ //запускает игру(смену поколения)
         if(this.isStart == true){
-
             this.isPause = true;
             this.isStart = false;
 
             this.game = setInterval(()=>{
-
                 this.view.clearCanvas();
                 // this.model.handDrowField();
                 this.model.changeGeneration();
@@ -57,7 +47,6 @@ export class ControllerGame{
     }
     pauseGame(){
         if(this.isPause == true){ //пауза в игре
-
             this.isPause = false;
             this.isStart = true;
             clearInterval(this.game);

@@ -15,8 +15,8 @@ export class ModelGame{
             }
             this.map.push(row);
         }
-        this.data = [];
     }
+
     createCell(y,x){ //создаю новую клетку 
         const cell = {
             x          : x,
@@ -37,14 +37,6 @@ export class ModelGame{
             time: this.genTime
         }
     }
-    // лишний метод
-    // getField(x, y){ // получаю  координаты 
- 
-    //     if(this.map[y][x].state == true){
-    //         return 1;
-    //     }else return 0;
-
-    // }
 
     setField(obj){ // задаю координаты и значение клетки
          this.map[obj.y][obj.x].state = true;
@@ -182,5 +174,5 @@ export class ModelGame{
 
     getTime(time){ //получаю значение ползунка времени
         this.genTime = time;
-    }
+    }    
 }

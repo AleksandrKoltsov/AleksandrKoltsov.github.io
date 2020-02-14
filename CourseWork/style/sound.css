@@ -1,0 +1,15 @@
+.music {
+    margin-left: 50%;
+    width: 500px;
+    display: flex;
+}
+.sound{
+    margin-left: 2rem;
+    width: 90%;
+    font-family: sans-serif;
+    text-shadow: none;
+    display: none;
+}
+.sound-active {
+    display: block;
+}
