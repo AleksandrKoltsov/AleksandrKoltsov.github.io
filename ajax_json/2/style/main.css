@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14pt;
+}
+.content {
+    display: inline-block;
+    background: none;
+    margin: 0.5rem;
+    text-align: center;
+}
+.button {
+    font-size: 1rem;
+    width: 250px;
+    outline: none;
+    cursor: pointer;
+    padding: 1rem;
+}
+.users {
+    display: block;
+    width: 100vw;
+}
+.head {
+    font-weight: bold;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid black;
+    padding: 1rem;
+}
+.user-info {
+    margin: 0 auto;
+    width: 50vw;
+}
+.btnShowPosts {
+    width: 100%;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem;
+}
+.container-post {
+    display: inline-block;
+    width: 350px;
+    border: 2px solid black;
+    padding: 1rem;
+    margin: 1rem;
+}
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+.post {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
