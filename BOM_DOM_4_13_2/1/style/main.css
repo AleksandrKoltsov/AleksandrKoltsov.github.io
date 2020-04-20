@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+}
+
+.track {
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    width: 20rem;
+    height: 0.5rem;
+    background-color: rgb(212, 214, 214);
+    /* box-shadow: -10px -10px 0px black; */
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.dot {
+    position: absolute;
+    top: 4.5rem;
+    left: 5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: cadetblue;
+    border: 1px solid black;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

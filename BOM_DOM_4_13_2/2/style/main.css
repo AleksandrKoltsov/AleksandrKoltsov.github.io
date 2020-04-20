@@ -1,0 +1,32 @@
+.images{
+	display: flex;
+	position: relative;
+	margin: 0;
+	font-size: 0;
+	top: 0;
+}
+
+.slider{
+	width: 800px;
+	height: 480px;
+	overflow: hidden;
+}
+
+nav{
+	/* position: fixed; */
+	top: 0; 
+	left: 0;
+	z-index: 1000;
+}
+
+button {
+	width: 398px;
+}
+
+.container {
+	width: 800px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
