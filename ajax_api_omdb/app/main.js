@@ -1,3 +1,5 @@
+// ссылка на API с ключем
+const url = 'https://www.omdbapi.com/?apikey=14134d9';
 // DOM елементы
 const dom = {
     main: document.querySelector('main'),
@@ -19,7 +21,7 @@ const options = {
 // обьект с фильмами - ключ ->ID фильма
 let films = {};
 // ссылка - если постера в фильме нет
-let noImage = "no image";
+let noImage = "././img/no_image.png";
 dom.resultSection.appendChild(dom.pagination);
 dom.resultSection.appendChild(dom.cards);
 dom.resultSection.appendChild(dom.error);
@@ -39,10 +41,8 @@ function searchHandler() {
         return;
     }
 }
-// ссылка на API с ключем
-const url = 'https://www.omdbapi.com/?apikey=14134d9';
 // функция для получения обьекта с фильмами - принимает обьект - options 
-function getFilms({title,type,page}) {
+function getFilms({title, type, page}) {
     fetch(`${url}&s=${title}&plot=full&type=${type}&page=${page}`)
         .then(res => res.json())
         .then(data => {
@@ -65,7 +65,7 @@ function showFilms(data) {
 function addFilmCards({
     Search
 }) {
-    dom.cards = creator('div', 'cards');
+    dom.cards = creator('div', 'cards')
     dom.cards.classList.add('cards');
     for (let e of Search) {
         // создаем обьект с фильмами - ключ это ID фильма (для показа полной карточки)
