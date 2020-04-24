@@ -1,0 +1,21 @@
+table {
+    margin: 0 auto;
+}
+
+tr td,
+tr th {
+    border: 1px solid;
+    padding: 10px;
+}
+
+h2 {
+    margin: 8vh auto 10px;
+    text-align: center;
+}
+.main-cont {
+    display: flex;
+    justify-content: center;
+}
+.container-styled {
+    margin-left: 2rem;
+}
